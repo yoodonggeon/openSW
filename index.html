@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단국대 강의실 콘센트 지도</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">DKU Outlet Map</div>
+        <div class="nav-links">
+            <button onclick="switchTab('home')">HOME</button>
+            <button onclick="switchTab('map-view')">Map View</button>
+            <button onclick="switchTab('report')">Report</button>
+            <button onclick="switchTab('admin')">관리자 모드</button>
+        </div>
+    </nav>
+
+    <main class="content">
+        
+        <section id="tab-home" class="tab-content active">
+            <h2>건물 및 강의실 선택</h2>
+            <p>콘센트 위치를 확인하고 싶은 건물을 선택하세요.</p>
+            <div class="building-list">
+                <button onclick="selectBuilding('소프트웨어관')">소프트웨어관</button>
+                <button onclick="selectBuilding('제1공학관')">제1공학관</button>
+                <button onclick="selectBuilding('제2공학관')">제2공학관</button>
+                <button onclick="selectBuilding('제3공학관')">제3공학관</button>
+                <button onclick="selectBuilding('인문관')">인문관</button>
+                <button onclick="selectBuilding('상경관')">상경관</button>
+                <button onclick="selectBuilding('사범관')">사범관</button>
+                <button onclick="selectBuilding('국제관')">국제관</button>
+            </div>
+            <div id="classroom-section" class="classroom-list-container hidden">
+                <h3 id="selected-building-title">강의실 선택</h3>
+                <div id="classroom-list" class="classroom-list">
+                    </div>
+            </div>
+        </section>
+
+        <section id="tab-map-view" class="tab-content">
+            <h2 id="map-title">강의실 도면 보기</h2>
+            <div id="map"></div> </section>
+
+        <section id="tab-report" class="tab-content">
+            <h2>고장난 콘센트 신고하기</h2>
+            <form id="report-form" onsubmit="handleReportSubmit(event)">
+                <label>건물명</label>
+                <input type="text" id="report-building" readonly required>
+                
+                <label>강의실 호수</label>
+                <input type="text" id="report-classroom" readonly required>
+                
+                <label>콘센트 ID/위치 설명</label>
+                <input type="text" id="report-location" placeholder="지도에서 핀을 클릭해 신고하거나 직접 작성하세요." required>
+                
+                <button type="submit" class="btn-submit">신고 접수</button>
+            </form>
+        </section>
+
+        <section id="tab-admin" class="tab-content">
+            <h2>관리자 시스템</h2>
+            <div id="admin-auth">
+                <p>관리자 비밀번호를 입력하세요.</p>
+                <input type="password" id="admin-password" placeholder="비밀번호 입력">
+                <button onclick="checkAdminPassword()" class="btn-submit">로그인</button>
+            </div>
+            <div id="admin-dashboard" class="hidden">
+                <h3>🚨 접수된 고장 신고 리스트 (Status: 2)</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>건물</th>
+                            <th>강의실</th>
+                            <th>콘센트 위치</th>
+                            <th>관리 액션</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-report-list">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>''

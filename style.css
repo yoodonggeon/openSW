@@ -1,0 +1,71 @@
+/* 기본 세팅 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* 네비게이션 바 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #002f6c; /* 단국대 느낌의 블루 */
+    padding: 15px 30px;
+    color: white;
+}
+.logo { font-size: 20px; font-weight: bold; }
+.nav-links button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+.nav-links button:hover { background-color: rgba(255,255,255,0.1); border-radius: 4px; }
+
+/* 메인 콘텐츠 */
+.content { padding: 4px 40px; max-width: 1000px; margin: 0 auto; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* 버튼 및 리스트 디자인 */
+.building-list, .classroom-list { display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+button:hover { background-color: #002f6c; color: white; border-color: #002f6c; }
+
+/* 숨김 처리용 클래스 */
+.hidden { display: none !important; }
+
+/* 지도 영역 설정 (매우 중요: 크기가 없으면 Leaflet 지도가 안 보임) */
+#map {
+    height: 550px;
+    width: 100%;
+    background-color: #eee;
+    border: 2px solid #002f6c;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* 폼 스타일 */
+form { display: flex; flex-direction: column; max-width: 400px; gap: 10px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+.btn-submit { background-color: #d9534f; color: white; border: none; font-weight: bold; }
+.btn-submit:hover { background-color: #c9302c; }
+
+/* 관리자 테이블 */
+.admin-table { width: 100%; border-collapse: collapse; background: white; margin-top: 15px; }
+.admin-table th, .admin-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+.admin-table th { background-color: #f2f2f2; }
