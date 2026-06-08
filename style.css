@@ -69,3 +69,14 @@ input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
 .admin-table { width: 100%; border-collapse: collapse; background: white; margin-top: 15px; }
 .admin-table th, .admin-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
 .admin-table th { background-color: #f2f2f2; }
+
+/* 지도가 그려지는 영역 안의 이미지가 마우스 클릭을 방해하지 못하게 설정 */
+.leaflet-image-layer, img {
+    pointer-events: none !important;
+    user-select: none !important; /* 파랗게 선택되는 현상 방지 */
+}
+
+/* 대신 지도 자체는 클릭을 받아야 하므로 설정 */
+.leaflet-container {
+    pointer-events: auto !important;
+}

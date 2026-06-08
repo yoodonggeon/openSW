@@ -7,7 +7,7 @@ let selectedClassroom = "";
 
 // 단국대 빌딩별 강의실 데이터
 const campusData = {
-    "소프트웨어관": ["204호(실습실)", "301호"],
+    "소프트웨어관": ["204호(실습실)", "301호","516호"],
     "제1공학관": ["101호", "102호"],
     "제2공학관": ["201호", "202호"],
     "제3공학관": ["105호"],
@@ -46,16 +46,45 @@ const outletData = {
         { id: "int101-1", name: "원형 소파 아래 매립형", coords: [500, 500], status: 0 },
         { id: "int101-2", name: "창가 바 테이블 오른쪽", coords: [300, 950], status: 0 }
     ],
-    "공학관_101호": [
+    "제1공학관_101호": [ // 캠퍼스 데이터 매칭을 위해 명칭 통일
         { id: "eng101-1", name: "칠판 왼쪽 구석", coords: [850, 150], status: 0 },
         { id: "eng101-2", name: "뒷문 옆 기둥", coords: [200, 850], status: 0 },
         { id: "eng101-3", name: "창가 중간 자리", coords: [500, 50], status: 1 } // 고장
     ],
-    "공학관_102호": [
+    "제1공학관_102호": [
         { id: "eng102-1", name: "교탁 아래", coords: [800, 500], status: 0 }
     ],
     "인문관_301호": [
         { id: "hum301-1", name: "중앙 통로 바닥", coords: [450, 500], status: 2 } // 신고됨
+    ],
+    "소프트웨어관_516호" : [
+        { id: "sw516-1", name: "책상 옆에", coords: [771, 616], status: 0 },
+        { id: "sw516-2", name: "책상 옆에", coords: [701, 308], status: 0 },
+        { id: "sw516-3", name: "책상 옆에", coords: [695, 490], status: 0 },
+        { id: "sw516-4", name: "책상 옆에", coords: [689, 650], status: 0 },
+        { id: "sw516-5", name: "책상 옆에", coords: [637, 306], status: 0 },
+        { id: "sw516-6", name: "책상 옆에", coords: [613, 490], status: 0 },
+        { id: "sw516-7", name: "벽면", coords: [603, 648], status: 0 },
+        { id: "sw516-8", name: "책상 옆에", coords: [581, 150], status: 0 },
+        { id: "sw516-9", name: "책상 옆에", coords: [575, 306], status: 0 },
+        { id: "sw516-10", name: "책상 옆에", coords: [519, 312], status: 0 },
+        { id: "sw516-11", name: "책상 옆에", coords: [527, 488], status: 0 },
+        { id: "sw516-12", name: "책상 옆에", coords: [527, 644], status: 0 },
+        { id: "sw516-13", name: "책상 옆에", coords: [487, 707], status: 0 },
+        { id: "sw516-14", name: "책상 옆에", coords: [393, 262], status: 0 },
+        { id: "sw516-15", name: "책상 위에", coords: [421, 476], status: 0 },
+        { id: "sw516-16", name: "책상 옆에", coords: [367, 476], status: 0 },
+        { id: "sw516-17", name: "책상 옆에", coords: [377, 683], status: 0 },
+        { id: "sw516-18", name: "책상 옆에", coords: [299, 158], status: 0 },
+        { id: "sw516-19", name: "책상 옆에", coords: [311, 258], status: 0 },
+        { id: "sw516-20", name: "책상 위에", coords: [335, 478], status: 0 },
+        { id: "sw516-21", name: "책상 옆에", coords: [281, 677], status: 0 },
+        { id: "sw516-22", name: "책상 옆에", coords: [225, 272], status: 0 },
+        { id: "sw516-23", name: "책상 옆에", coords: [209, 474], status: 0 },
+        { id: "sw516-24", name: "책상 옆에", coords: [209, 677], status: 0 },
+        { id: "sw516-25", name: "책상 옆에", coords: [121, 262], status: 0 },
+        { id: "sw516-26", name: "책상 위에", coords: [155, 482], status: 0 },
+        { id: "sw516-27", name: "책상 옆에", coords: [129, 683], status: 0 }
     ]
 };
 
@@ -63,14 +92,11 @@ const outletData = {
 // 2. 탭 전환 및 메뉴 제어 로직
 // ==========================================
 function switchTab(tabId) {
-    // 모든 탭 숨기기
     document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.remove('active');
     });
-    // 선택한 탭 보이기
     document.getElementById(`tab-${tabId}`).classList.add('active');
     
-    // Leaflet 지도는 화면에 나타날 때 크기를 재계산해야 정상 출력됨
     if (tabId === 'map-view' && currentMap) {
         setTimeout(() => { currentMap.invalidateSize(); }, 100);
     }
@@ -82,15 +108,16 @@ function selectBuilding(buildingName) {
     document.getElementById('selected-building-title').innerText = `${buildingName} - 강의실 선택`;
     
     const classroomListDiv = document.getElementById('classroom-list');
-    classroomListDiv.innerHTML = ""; // 기존 리스트 초기화
+    classroomListDiv.innerHTML = ""; 
     
-    // 해당하는 강의실 버튼 동적 생성
-    campusData[buildingName].forEach(room => {
-        const btn = document.createElement('button');
-        btn.innerText = room;
-        btn.onclick = () => loadMapPage(buildingName, room);
-        classroomListDiv.appendChild(btn);
-    });
+    if (campusData[buildingName]) {
+        campusData[buildingName].forEach(room => {
+            const btn = document.createElement('button');
+            btn.innerText = room;
+            btn.onclick = () => loadMapPage(buildingName, room);
+            classroomListDiv.appendChild(btn);
+        });
+    }
     
     document.getElementById('classroom-section').classList.remove('hidden');
 }
@@ -99,47 +126,65 @@ function selectBuilding(buildingName) {
 // 3. Leaflet.js 실내 지도 구현 (핵심)
 // ==========================================
 function loadMapPage(building, room) {
+    selectedBuilding = building; // 상태 업데이트를 위한 동기화
     selectedClassroom = room;
     switchTab('map-view');
     document.getElementById('map-title').innerText = `${building} ${room} 콘센트 도면`;
 
-    // 1) 기존 지도가 있다면 초기화 (메모리 누수 및 충돌 방지)
     if (currentMap) {
         currentMap.remove();
+        currentMap = null;
     }
 
-    // 2) 가상 좌표계(Simple CRS)로 지도 생성
     currentMap = L.map('map', {
         crs: L.CRS.Simple,
         minZoom: -1,
         maxZoom: 2
     });
 
-    // 3) 대피도 이미지 매핑 (가상의 가로세로 1000px 공간 설정)
     const bounds = [[0, 0], [1000, 1000]];
-    
-    // 실제 이미지 경로 지정 (본인 이미지 파일명에 맞게 수정)
-    // 예: 이미지 없으면 작동 확인용 가상 이미지 주소 사용
     const imagePath = `images/${building}_${room}.jpg`; 
     
     L.imageOverlay(imagePath, bounds).addTo(currentMap);
-    currentMap.fitBounds(bounds); // 이미지 크기에 화면 맞추기
+    currentMap.fitBounds(bounds); 
 
-    // 4) 콘센트 데이터 불러와서 핀(Marker) 찍기
     const dataKey = `${building}_${room}`;
     if (outletData[dataKey]) {
         outletData[dataKey].forEach(outlet => {
-            // 상태별 마커 색상 구분 (원형 마커 사용, 이미지 핀으로 대체 가능)
             let markerColor = "#5cb85c"; // 정상 (Green)
             let statusText = "🟢 사용 가능";
+            let buttonHtml = ""; // 💡 블록 스코프 안전 선언
             
             if (outlet.status === 1) {
                 markerColor = "#d9534f"; // 고장 (Red)
                 statusText = "🔴 고장 (사용 불가)";
+
+                // ❌ 고장 확정 상태 시 노출할 안내 문구 (클릭 원천 차단)
+                buttonHtml = `
+                    <div style="text-align:center; color:#d9534f; font-weight:bold; margin-top:10px; padding:6px; border:1px dashed #d9534f; border-radius:4px; font-size:12px; background-color:#fff5f5;">
+                        🔧 수리 진행 중인 콘센트입니다.
+                    </div>
+                `;
             } else if (outlet.status === 2) {
                 markerColor = "#f0ad4e"; // 신고됨 (Yellow)
                 statusText = "🟡 고장 신고 접수됨";
-            }
+
+                // ⏳ 대기 상태 시 중복 신고를 막기 위해 비활성화(disabled) 처리
+                buttonHtml = `
+                    <button disabled 
+                            style="padding:5px 10px; font-size:12px; background-color:#ccc; color:#666; border:none; border-radius:4px; width:100%; cursor:not-allowed;">
+                        ⏰ 고장 신고 검토 중입니다
+                    </button>
+                `;
+            } else {
+                // 🟢 정상 상태일 때만 신고하기 버튼 활성화
+                buttonHtml = `
+                    <button onclick="goToReport('${building}', '${room}', '${outlet.name}')" 
+                            style="padding:5px 10px; font-size:12px; background-color:#d9534f; color:white; border:none; border-radius:4px; cursor:pointer; width:100%;">
+                        이 콘센트 고장 신고하기
+                    </button>
+                `;
+            }   
 
             // 마커 생성 및 지도 추가
             const marker = L.circleMarker(outlet.coords, {
@@ -150,15 +195,12 @@ function loadMapPage(building, room) {
                 fillOpacity: 0.8
             }).addTo(currentMap);
 
-            // 마커 클릭 시 나타날 팝업창 디자인 및 신고 연동 버튼
+            // 🛠️ [버그 수정 완료] 하드코딩 버튼을 제거하고 동적으로 가공된 ${buttonHtml} 삽입
             const popupContent = `
-                <div style="font-size:14px;">
+                <div style="font-size:14px; font-family: sans-serif; min-width: 170px;">
                     <b>위치:</b> ${outlet.name}<br>
                     <b>상태:</b> ${statusText}<br><br>
-                    <button onclick="goToReport('${building}', '${room}', '${outlet.name}')" 
-                            style="padding:5px 10px; font-size:12px; background-color:#d9534f; color:white; border:none; border-radius:4px; cursor:pointer;">
-                        이 콘센트 고장 신고하기
-                    </button>
+                    ${buttonHtml}
                 </div>
             `;
             marker.bindPopup(popupContent);
@@ -166,7 +208,6 @@ function loadMapPage(building, room) {
     }
 }
 
-// 팝업 안에서 신고 버튼 누르면 Report 탭으로 데이터 자동 전달
 function goToReport(building, room, locationName) {
     document.getElementById('report-building').value = building;
     document.getElementById('report-classroom').value = room;
@@ -177,10 +218,8 @@ function goToReport(building, room, locationName) {
 // ==========================================
 // 4. Report (고장 신고) 처리 로직
 // ==========================================
-
-// 사용자가 신고 폼을 제출했을 때 실행되는 함수
 function handleReportSubmit(event) {
-    event.preventDefault(); // 페이지 새로고침 방지
+    event.preventDefault(); 
 
     const building = document.getElementById('report-building').value;
     const classroom = document.getElementById('report-classroom').value;
@@ -189,16 +228,14 @@ function handleReportSubmit(event) {
     const dataKey = `${building}_${classroom}`;
 
     if (outletData[dataKey]) {
-        // 해당 강의실에서 이름이 일치하는 콘센트 찾기
         const outlet = outletData[dataKey].find(o => o.name === location);
         
         if (outlet) {
-            outlet.status = 2; // 상태를 2(신고됨)로 변경
+            outlet.status = 2; 
             alert(`[신고 접수] ${building} ${classroom}의 '${location}' 콘센트가 고장 신고 처리되었습니다.`);
             
-            // 데이터가 변경되었으므로 지도를 새로 불러오고 홈으로 이동
             loadMapPage(building, classroom);
-            updateAdminDashboard(); // 관리자 화면도 업데이트
+            updateAdminDashboard(); 
             switchTab('map-view');
         } else {
             alert("선택하신 위치의 콘센트 정보가 존재하지 않습니다. 지도에서 핀을 먼저 클릭해주세요.");
@@ -209,30 +246,27 @@ function handleReportSubmit(event) {
 // ==========================================
 // 5. 관리자 모드 (인증 및 대시보드 상태 변경)
 // ==========================================
+const ADMIN_PASSWORD = "dku1234"; 
 
-const ADMIN_PASSWORD = "dku1234"; // 과제용 기본 관리자 비밀번호
-
-// 관리자 로그인 확인
 function checkAdminPassword() {
     const passwordInput = document.getElementById('admin-password').value;
     
     if (passwordInput === ADMIN_PASSWORD) {
         document.getElementById('admin-auth').classList.add('hidden');
         document.getElementById('admin-dashboard').classList.remove('hidden');
-        updateAdminDashboard(); // 신고 리스트 갱신
+        updateAdminDashboard(); 
     } else {
         alert("비밀번호가 틀렸습니다. 다시 시도하세요.");
     }
 }
 
-// 관리자 대시보드에 신고된 콘센트 리스트(Status: 2)를 띄우는 함수
 function updateAdminDashboard() {
     const tbody = document.getElementById('admin-report-list');
-    tbody.innerHTML = ""; // 기존 리스트 초기화
+    if(!tbody) return;
+    tbody.innerHTML = ""; 
 
     let hasReports = false;
 
-    // 모든 강의실 데이터를 순회하며 status가 2인 항목 찾기
     for (const key in outletData) {
         const [building, classroom] = key.split('_');
         
@@ -247,11 +281,11 @@ function updateAdminDashboard() {
                     <td>${outlet.name}</td>
                     <td>
                         <button onclick="changeOutletStatus('${building}', '${classroom}', '${outlet.id}', 0)" 
-                                style="background-color:#5cb85c; color:white; padding:5px; font-size:12px;">
+                                style="background-color:#5cb85c; color:white; padding:5px; font-size:12px; border:none; border-radius:4px; cursor:pointer;">
                             정상(0) 처리
                         </button>
                         <button onclick="changeOutletStatus('${building}', '${classroom}', '${outlet.id}', 1)" 
-                                style="background-color:#d9534f; color:white; padding:5px; font-size:12px; margin-left:5px;">
+                                style="background-color:#d9534f; color:white; padding:5px; font-size:12px; margin-left:5px; border:none; border-radius:4px; cursor:pointer;">
                             고장(1) 확정
                         </button>
                     </td>
@@ -262,11 +296,10 @@ function updateAdminDashboard() {
     }
 
     if (!hasReports) {
-        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#999;">현재 접수된 고장 신고가 없습니다.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#999; padding:15px;">현재 접수된 고장 신고가 없습니다.</td></tr>`;
     }
 }
 
-// 관리자가 버튼을 눌러 상태를 0(정상) 또는 1(고장)로 변경하는 함수
 function changeOutletStatus(building, classroom, outletId, newStatus) {
     const dataKey = `${building}_${classroom}`;
     const outlet = outletData[dataKey].find(o => o.id === outletId);
@@ -276,9 +309,29 @@ function changeOutletStatus(building, classroom, outletId, newStatus) {
         const statusText = newStatus === 0 ? "정상(사용가능)" : "고장(사용불가)";
         alert(`해당 콘센트가 [${statusText}] 상태로 변경되었습니다.`);
         
-        updateAdminDashboard(); // 대시보드 갱신
+        updateAdminDashboard(); 
         if (currentMap && selectedBuilding === building && selectedClassroom === classroom) {
-            loadMapPage(building, classroom); // 지도 화면이 켜져있다면 지도 핀 색상도 즉시 갱신
+            loadMapPage(building, classroom); 
         }
     }
 }
+
+// ==========================================
+// 6. 좌표 추출 디버거 리스너
+// ==========================================
+window.addEventListener('click', function(e) {
+    if (!currentMap) return;
+
+    const mapCont = document.getElementById('map');
+    if (mapCont && mapCont.contains(e.target)) {
+        if (e.target.classList.contains('leaflet-interactive') && e.target.tagName === 'path') {
+            return;
+        }
+
+        const point = currentMap.mouseEventToLatLng(e);
+        const y = Math.round(point.lat);
+        const x = Math.round(point.lng);
+
+        console.log(`%c📍 찾았다 콘센트 좌표 -> coords: [${y}, ${x}]`, "color: #002f6c; font-weight: bold; font-size: 14px;");
+    }
+});
