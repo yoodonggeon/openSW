@@ -58,33 +58,33 @@ const outletData = {
         { id: "hum301-1", name: "중앙 통로 바닥", coords: [450, 500], status: 2 } // 신고됨
     ],
     "소프트웨어관_516호" : [
-        { id: "sw516-1", name: "책상 옆에", coords: [771, 616], status: 0 },
-        { id: "sw516-2", name: "책상 옆에", coords: [701, 308], status: 0 },
-        { id: "sw516-3", name: "책상 옆에", coords: [695, 490], status: 0 },
-        { id: "sw516-4", name: "책상 옆에", coords: [689, 650], status: 0 },
-        { id: "sw516-5", name: "책상 옆에", coords: [637, 306], status: 0 },
-        { id: "sw516-6", name: "책상 옆에", coords: [613, 490], status: 0 },
-        { id: "sw516-7", name: "벽면", coords: [603, 648], status: 0 },
-        { id: "sw516-8", name: "책상 옆에", coords: [581, 150], status: 0 },
-        { id: "sw516-9", name: "책상 옆에", coords: [575, 306], status: 0 },
-        { id: "sw516-10", name: "책상 옆에", coords: [519, 312], status: 0 },
-        { id: "sw516-11", name: "책상 옆에", coords: [527, 488], status: 0 },
-        { id: "sw516-12", name: "책상 옆에", coords: [527, 644], status: 0 },
-        { id: "sw516-13", name: "책상 옆에", coords: [487, 707], status: 0 },
-        { id: "sw516-14", name: "책상 옆에", coords: [393, 262], status: 0 },
-        { id: "sw516-15", name: "책상 위에", coords: [421, 476], status: 0 },
-        { id: "sw516-16", name: "책상 옆에", coords: [367, 476], status: 0 },
-        { id: "sw516-17", name: "책상 옆에", coords: [377, 683], status: 0 },
-        { id: "sw516-18", name: "책상 옆에", coords: [299, 158], status: 0 },
-        { id: "sw516-19", name: "책상 옆에", coords: [311, 258], status: 0 },
-        { id: "sw516-20", name: "책상 위에", coords: [335, 478], status: 0 },
-        { id: "sw516-21", name: "책상 옆에", coords: [281, 677], status: 0 },
-        { id: "sw516-22", name: "책상 옆에", coords: [225, 272], status: 0 },
-        { id: "sw516-23", name: "책상 옆에", coords: [209, 474], status: 0 },
-        { id: "sw516-24", name: "책상 옆에", coords: [209, 677], status: 0 },
-        { id: "sw516-25", name: "책상 옆에", coords: [121, 262], status: 0 },
-        { id: "sw516-26", name: "책상 위에", coords: [155, 482], status: 0 },
-        { id: "sw516-27", name: "책상 옆에", coords: [129, 683], status: 0 }
+        { id: "sw516-1", name: "1. 책상 옆에", coords: [771, 616], status: 0 },
+        { id: "sw516-2", name: "2. 책상 옆에", coords: [701, 308], status: 0 },
+        { id: "sw516-3", name: "3. 책상 옆에", coords: [695, 490], status: 0 },
+        { id: "sw516-4", name: "4. 책상 옆에", coords: [689, 650], status: 0 },
+        { id: "sw516-5", name: "5. 책상 옆에", coords: [637, 306], status: 0 },
+        { id: "sw516-6", name: "6. 책상 옆에", coords: [613, 490], status: 0 },
+        { id: "sw516-7", name: "7. 벽면", coords: [603, 648], status: 0 },
+        { id: "sw516-8", name: "8. 책상 옆에", coords: [581, 150], status: 0 },
+        { id: "sw516-9", name: "9. 책상 옆에", coords: [575, 306], status: 0 },
+        { id: "sw516-10", name: "10. 책상 옆에", coords: [519, 312], status: 0 },
+        { id: "sw516-11", name: "11. 책상 옆에", coords: [527, 488], status: 0 },
+        { id: "sw516-12", name: "12. 책상 옆에", coords: [527, 644], status: 0 },
+        { id: "sw516-13", name: "13. 책상 옆에", coords: [487, 707], status: 0 },
+        { id: "sw516-14", name: "14. 책상 옆에", coords: [393, 262], status: 0 },
+        { id: "sw516-15", name: "15. 책상 위에", coords: [421, 476], status: 0 },
+        { id: "sw516-16", name: "16. 책상 옆에", coords: [367, 476], status: 0 },
+        { id: "sw516-17", name: "17. 책상 옆에", coords: [377, 683], status: 0 },
+        { id: "sw516-18", name: "18. 책상 옆에", coords: [299, 158], status: 0 },
+        { id: "sw516-19", name: "19. 책상 옆에", coords: [311, 258], status: 0 },
+        { id: "sw516-20", name: "20. 책상 위에", coords: [335, 478], status: 0 },
+        { id: "sw516-21", name: "21. 책상 옆에", coords: [281, 677], status: 0 },
+        { id: "sw516-22", name: "22. 책상 옆에", coords: [225, 272], status: 0 },
+        { id: "sw516-23", name: "23. 책상 옆에", coords: [209, 474], status: 0 },
+        { id: "sw516-24", name: "24. 책상 옆에", coords: [209, 677], status: 0 },
+        { id: "sw516-25", name: "25. 책상 옆에", coords: [121, 262], status: 0 },
+        { id: "sw516-26", name: "26. 책상 위에", coords: [155, 482], status: 0 },
+        { id: "sw516-27", name: "27. 책상 옆에", coords: [129, 683], status: 0 }
     ]
 };
 
@@ -159,11 +159,15 @@ function loadMapPage(building, room) {
                 markerColor = "#d9534f"; // 고장 (Red)
                 statusText = "🔴 고장 (사용 불가)";
 
-                // ❌ 고장 확정 상태 시 노출할 안내 문구 (클릭 원천 차단)
+                // 🔄 [변경] 고장 확정 상태일 때 사용자가 다시 정상 작동 상태로 재요청할 수 있는 버튼 제공
                 buttonHtml = `
-                    <div style="text-align:center; color:#d9534f; font-weight:bold; margin-top:10px; padding:6px; border:1px dashed #d9534f; border-radius:4px; font-size:12px; background-color:#fff5f5;">
-                        🔧 수리 진행 중인 콘센트입니다.
+                    <div style="text-align:center; color:#d9534f; font-weight:bold; margin-bottom:8px; font-size:12px;">
+                        🔧 고장 확정된 콘센트입니다.
                     </div>
+                    <button onclick="revertToReport('${building}', '${room}', '${outlet.id}')" 
+                            style="padding:5px 10px; font-size:12px; background-color:#5cb85c; color:white; border:none; border-radius:4px; cursor:pointer; width:100%;">
+                        🍏 현재 정상 작동합니다 (재점검 요청)
+                    </button>
                 `;
             } else if (outlet.status === 2) {
                 markerColor = "#f0ad4e"; // 신고됨 (Yellow)
@@ -264,42 +268,30 @@ function checkAdminPassword() {
 function updateAdminDashboard() {
     const tbody = document.getElementById('admin-report-list');
     if(!tbody) return;
-    tbody.innerHTML = ""; // 기존 리스트 초기화
+    tbody.innerHTML = ""; 
 
-    let hasIssues = false;
+    let hasReports = false;
 
-    // 모든 강의실 데이터를 순회하며 status가 1(고장 확정)이거나 2(신고됨)인 항목 찾기
     for (const key in outletData) {
         const [building, classroom] = key.split('_');
         
         outletData[key].forEach(outlet => {
-            // 💡 [변경 포인트] status가 1(고장) 또는 2(신고됨)인 것을 모두 대시보드에 표시
-            if (outlet.status === 1 || outlet.status === 2) {
-                hasIssues = true;
+            if (outlet.status === 2) {
+                hasReports = true;
                 const tr = document.createElement('tr');
                 
-                // 현재 상태에 따른 배지 텍스트와 색상 설정
-                let currentStatusBadge = "";
-                if (outlet.status === 2) {
-                    currentStatusBadge = `<span style="color: #f0ad4e; font-weight: bold;">⚠️ 신고됨</span>`;
-                } else if (outlet.status === 1) {
-                    currentStatusBadge = `<span style="color: #d9534f; font-weight: bold;">🔧 수리중(고장)</span>`;
-                }
-
                 tr.innerHTML = `
-                    <td><b>${building}</b></td>
+                    <td>${building}</td>
                     <td>${classroom}</td>
-                    <td>${outlet.name} (${currentStatusBadge})</td>
+                    <td>${outlet.name}</td>
                     <td>
                         <button onclick="changeOutletStatus('${building}', '${classroom}', '${outlet.id}', 0)" 
-                                style="background-color:#5cb85c; color:white; padding:5px 10px; font-size:12px; border:none; border-radius:4px; cursor:pointer;">
-                            정상(0) 복구
+                                style="background-color:#5cb85c; color:white; padding:5px; font-size:12px; border:none; border-radius:4px; cursor:pointer;">
+                            정상(0) 처리
                         </button>
-                        
                         <button onclick="changeOutletStatus('${building}', '${classroom}', '${outlet.id}', 1)" 
-                                ${outlet.status === 1 ? 'disabled style="background-color:#ccc; color:#666; cursor:not-allowed;"' : 'style="background-color:#d9534f; color:white; cursor:pointer;"'}
-                                style="padding:5px 10px; font-size:12px; margin-left:5px; border:none; border-radius:4px;">
-                            ${outlet.status === 1 ? '고장 확정됨' : '고장(1) 확정'}
+                                style="background-color:#d9534f; color:white; padding:5px; font-size:12px; margin-left:5px; border:none; border-radius:4px; cursor:pointer;">
+                            고장(1) 확정
                         </button>
                     </td>
                 `;
@@ -308,8 +300,8 @@ function updateAdminDashboard() {
         });
     }
 
-    if (!hasIssues) {
-        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#999; padding:15px;">현재 관리 대상인 콘센트(고장/신고)가 없습니다.</td></tr>`;
+    if (!hasReports) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#999; padding:15px;">현재 접수된 고장 신고가 없습니다.</td></tr>`;
     }
 }
 
@@ -325,6 +317,29 @@ function changeOutletStatus(building, classroom, outletId, newStatus) {
         updateAdminDashboard(); 
         if (currentMap && selectedBuilding === building && selectedClassroom === classroom) {
             loadMapPage(building, classroom); 
+        }
+    }
+}
+
+function revertToReport(building, room, outletId) {
+    const dataKey = `${building}_${room}`;
+    
+    if (outletData[dataKey]) {
+        // 이름을 구별하셨든 ID를 쓰시든 안전하게 id 기반으로 찾습니다.
+        // (만약 아직 ID 기반 수정을 안 하셨고 이름만 바꾸셨다면 outletId 자리에 outlet.name이 들어와도 잘 작동합니다)
+        const outlet = outletData[dataKey].find(o => o.id === outletId || o.name === outletId);
+        
+        if (outlet) {
+            // 🟡 상태를 다시 2(신고 접수/검토 중)로 변경합니다.
+            outlet.status = 2; 
+            
+            alert(`[재점검 접수] '${outlet.name}' 콘센트가 다시 관리자 검토 중(신고됨) 상태로 변경되었습니다.`);
+            
+            // 화면 즉시 갱신
+            loadMapPage(building, classroom = room); 
+            if (typeof updateAdminDashboard === "function") {
+                updateAdminDashboard(); // 관리자 대시보드도 실시간 동기화
+            }
         }
     }
 }
