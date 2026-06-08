@@ -260,33 +260,46 @@ function checkAdminPassword() {
     }
 }
 
+// 관리자 대시보드에 신고된 콘센트(2)와 고장 확정된 콘센트(1) 리스트를 모두 띄우는 함수
 function updateAdminDashboard() {
     const tbody = document.getElementById('admin-report-list');
     if(!tbody) return;
-    tbody.innerHTML = ""; 
+    tbody.innerHTML = ""; // 기존 리스트 초기화
 
-    let hasReports = false;
+    let hasIssues = false;
 
+    // 모든 강의실 데이터를 순회하며 status가 1(고장 확정)이거나 2(신고됨)인 항목 찾기
     for (const key in outletData) {
         const [building, classroom] = key.split('_');
         
         outletData[key].forEach(outlet => {
-            if (outlet.status === 2) {
-                hasReports = true;
+            // 💡 [변경 포인트] status가 1(고장) 또는 2(신고됨)인 것을 모두 대시보드에 표시
+            if (outlet.status === 1 || outlet.status === 2) {
+                hasIssues = true;
                 const tr = document.createElement('tr');
                 
+                // 현재 상태에 따른 배지 텍스트와 색상 설정
+                let currentStatusBadge = "";
+                if (outlet.status === 2) {
+                    currentStatusBadge = `<span style="color: #f0ad4e; font-weight: bold;">⚠️ 신고됨</span>`;
+                } else if (outlet.status === 1) {
+                    currentStatusBadge = `<span style="color: #d9534f; font-weight: bold;">🔧 수리중(고장)</span>`;
+                }
+
                 tr.innerHTML = `
-                    <td>${building}</td>
+                    <td><b>${building}</b></td>
                     <td>${classroom}</td>
-                    <td>${outlet.name}</td>
+                    <td>${outlet.name} (${currentStatusBadge})</td>
                     <td>
                         <button onclick="changeOutletStatus('${building}', '${classroom}', '${outlet.id}', 0)" 
-                                style="background-color:#5cb85c; color:white; padding:5px; font-size:12px; border:none; border-radius:4px; cursor:pointer;">
-                            정상(0) 처리
+                                style="background-color:#5cb85c; color:white; padding:5px 10px; font-size:12px; border:none; border-radius:4px; cursor:pointer;">
+                            정상(0) 복구
                         </button>
+                        
                         <button onclick="changeOutletStatus('${building}', '${classroom}', '${outlet.id}', 1)" 
-                                style="background-color:#d9534f; color:white; padding:5px; font-size:12px; margin-left:5px; border:none; border-radius:4px; cursor:pointer;">
-                            고장(1) 확정
+                                ${outlet.status === 1 ? 'disabled style="background-color:#ccc; color:#666; cursor:not-allowed;"' : 'style="background-color:#d9534f; color:white; cursor:pointer;"'}
+                                style="padding:5px 10px; font-size:12px; margin-left:5px; border:none; border-radius:4px;">
+                            ${outlet.status === 1 ? '고장 확정됨' : '고장(1) 확정'}
                         </button>
                     </td>
                 `;
@@ -295,8 +308,8 @@ function updateAdminDashboard() {
         });
     }
 
-    if (!hasReports) {
-        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#999; padding:15px;">현재 접수된 고장 신고가 없습니다.</td></tr>`;
+    if (!hasIssues) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#999; padding:15px;">현재 관리 대상인 콘센트(고장/신고)가 없습니다.</td></tr>`;
     }
 }
 
